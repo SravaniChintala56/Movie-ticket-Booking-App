@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BookMyShow - Book Tickets</title>
+    <link rel="icon" href="http://lh6.ggpht.com/7DyCd4vhU-gz6iXhqk8aOiKQEo_Vt8fWRZRuU_jDYFmPosvcASchS3i_n9nDOiOAYQ=w300"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="./movieDetails.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-bar">
+        <img src="https://www.myhoardings.com/ads/wp-content/uploads/2024/06/bookmyshow-logo-vector.png" alt="" class="logo" id="logo1" />
+        <div class="logocontainer">
+          <img src="https://static.vecteezy.com/system/resources/previews/050/816/799/non_2x/bookmyshow-transparent-icon-free-png.png" alt="" id="logo2"/>
+          <h2>It All Starts here</h2>
+        </div>
+        <a href="./bookings.html"><button class="bookings-btn">My Bookings</button></a>
+      </div>
+    </header>
+    <section>
+      <div class="dates" id="dates"></div>
+    </section>
+    <main>
+      <section id="cards-Section">
+        <div class="movie-card"></div>
+      </section>
+      <section>
+        <div class="anime">
+          <!-- <img src="./stream-showcase-banner-exp-collection-202406050332.gif" alt=""> -->
+          <div class="video-container">
+          </div>
+          <div class="anime-sec2">
+            <h4>Reviews</h4>
+            <ul class="reviews-container"></ul>
+          </div>
+        </div>
+      </section>
+    </main>
+    <section class="Reviews-section">
+      <div class="reviewsSection">
+        <div style="margin-top: 20px" class="addreviewContainer">
+        <p class="addreview-heading">
+          <span>Add Reviews here</span
+          ><button class="addreview-btn" onclick="addReview()" disabled>
+            Add
+          </button>
+        </p>
+        <textarea
+          id="txtarea"
+          placeholder="Add your review here . . ."
+          maxlength="150"
+        ></textarea>
+        <p style="text-align: end">
+          <span style="color: #38b000" id="charcount">150</span> char
+        </p>
+      </div>
+      <div class="ticketimg-container">
+        <img src="./stream-showcase-banner-exp-collection-202406050332.gif" alt="">
+      </div>
+      </div>
+    </section>
+    <footer>
+      <div class="footer">
+        <div class="hrtag-container"><hr class="hrtag"><img src="https://in.bmscdn.com/webin/common/icons/logo.svg" alt="" class="logotxt"></div>
+          <div class="copyr8stxt">
+            <p>Copyright 2025  © Bigtree Entertainment Pvt. Ltd. All Rights Reserved. </p>
+            <p>The content and images used on this site are copyright protected and copyrights vests with the respective owners. The usage of the content and images on this website is intended to promote the works and no endorsement of the artist shall be implied. Unauthorized use is prohibited and punishable by law.</p>
+          </div>
+        </div>
+        <div class="footer-btn"><button><a href="#dates">Go to top</a></button></div>
+      </div>
+    </footer>
+    <script src="./movieDetails.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

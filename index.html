@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookMyShow-log in or sign up</title>
+    <link rel="icon" href="http://lh6.ggpht.com/7DyCd4vhU-gz6iXhqk8aOiKQEo_Vt8fWRZRuU_jDYFmPosvcASchS3i_n9nDOiOAYQ=w300">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="background"></div>
+    <div class="main-container">
+        <div class="sec1">
+            <img src="https://logodix.com/logo/2011021.png" alt="" class="logo">
+            <h4 class="caption"></h4>
+        </div>
+        <div class="sec2">
+            <h2 class="signIn-heading">Sign In</h2>
+            <div class="inputs-container">
+                <div class="username-container"><label for="username">Username:</label><input type="text" name="Username" id="username"><i class="bi bi-person-circle"></i><span class="usrname-detect">usrerr</span></div>
+                <div class="password-container"><label for="password">Password:</label><input type="password" name="Password" id="password"><i class="bi bi-eye-slash eye1"></i><i class="bi bi-eye eye2 displayn"></i><span class="pass-detect">asserr</span></div>
+
+            </div>
+            <div class="login-btns-container">
+               <button class="login-btn" disabled onclick="gottoMain()">Login</button>
+                <button class="signUp-btn">Create New Account/Sign Up</button>
+            </div>
+        </div>
+        <div class="sec3">
+            <h2 class="signUp-heading">Sign Up</h2>
+            <div class="newinputs-container">
+                <div class="newusername-container"><label for="newusername">Username:</label><input type="text" name="newUsername" id="newusername"><i class="bi bi-person-circle"></i></div>
+                <div class="newpassword-container"><label for="newpassword">Password:</label><input type="password" name="newPassword" id="newpassword"><i class="bi bi-eye-slash neweye1"></i><i class="bi bi-eye neweye2 displayn"></i></div>
+            </div>
+            <div class="newlogin-btns-container">
+                <button class="newsignUp-btn" onclick="signUptoHomepage()" disabled>Sign Up</button>
+                <button class="backtologinbtn">back to Login</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        //Script starts here
+        let caption=document.querySelector('.caption');
+        let txt="Book your movie tickets online with ease. Enjoy the latest blockbusters anytime, anywhere!";
+        index=0;
+        function displayCaption(){
+            if(index < txt.length){
+                caption.textContent+=txt[index];
+                index++;
+            }
+            setTimeout(displayCaption,70);
+        };
+        displayCaption();
+
+        let username=document.querySelector('#username') //existing user -> username field
+        let password=document.querySelector('#password'); //existing user->password field
+        let eyeslash=document.querySelector('.eye1');
+        let eye=document.querySelector('.eye2')
+        eyeslash.addEventListener('click',()=>{
+            if (password.type=="password"){
+                password.type='text';
+                eye.classList.remove('displayn');     
+                eyeslash.classList.add('displayn');
+            }
+        });
+        eye.addEventListener('click',()=>{
+            password.type="password";
+            eye.classList.add('displayn');     
+            eyeslash.classList.remove('displayn');
+        });
+
+        let newusername=document.querySelector('#newusername') //newusername field
+        let newpassword=document.querySelector('#newpassword');  //newpassword field
+        let neweye1=document.querySelector('.neweye1');
+        let neweye2=document.querySelector('.neweye2');
+        neweye1.addEventListener('click',()=>{
+            if (newpassword.type=="password"){
+                newpassword.type='text';
+                neweye2.classList.remove('displayn');     
+                neweye1.classList.add('displayn');
+            }
+        });
+        neweye2.addEventListener('click',()=>{
+            newpassword.type="password";
+            neweye2.classList.add('displayn');     
+            neweye1.classList.remove('displayn');
+        });
+
+
+        //create account functionality
+        let existinguserpage=document.querySelector('.sec2');
+        let newuserpage=document.querySelector('.sec3');
+        let signUpbtn=document.querySelector('.signUp-btn');   
+        newuserpage.classList.add('displayn');
+        let backgroundimg=document.querySelector('.background')
+        let backtologinbtn=document.querySelector('.backtologinbtn')
+        signUpbtn.addEventListener('click',()=>{
+            existinguserpage.classList.add('displayn');
+            newuserpage.classList.remove('displayn');
+        });
+        backtologinbtn.addEventListener('click',()=>{
+            existinguserpage.classList.remove('displayn');
+            newuserpage.classList.add('displayn');
+        });
+
+        
+        //data saving functionality existing user
+        let usersData=JSON.parse(localStorage.getItem('usersdata'))||[];
+        //usersData=JSON.parse(localstorage.getItem('usersdata'))
+        let LoginBtn=document.querySelector('.login-btn');  //login btn
+
+        if (LoginBtn.disabled){
+            LoginBtn.style.cursor="default";
+        }
+        function validateUser(){
+            let providedUsername=username.value.trim();
+            let providedpassword=password.value.trim();
+            const isValid=usersData.some(user=>user.username==providedUsername && user.password==providedpassword);
+            LoginBtn.disabled=!isValid;
+            LoginBtn.style.cursor=isValid?"pointer":"default";
+            if(isValid){
+                LoginBtn.style.backgroundColor="rgb(248, 68, 100)";
+                LoginBtn.style.color="white";
+            }
+        }
+        username.addEventListener('blur',validateUser);
+        password.addEventListener('blur',validateUser);
+        LoginBtn.addEventListener('click',()=>{
+            console.log("login credentials are correct");
+        });
+
+        //newuser login
+        let newsignUpbtn=document.querySelector('.newsignUp-btn');
+        let isvalidUsername=false;
+        let isvalidPassword=false;
+        let usernamePttrn=/^[A-Z][a-z]{8,}$/g;
+        let passwordPttrn=/^[A-Z][a-z]{3,12}\W{1}[0-9]{2,4}$/g;
+        if(newsignUpbtn.disabled){
+            newsignUpbtn.style.cursor="default";
+        }
+        function validateNewUser(){
+            if(isvalidUsername && isvalidPassword){
+                newsignUpbtn.disabled=false;
+                newsignUpbtn.style.backgroundColor="rgb(248, 68, 100)";
+                newsignUpbtn.style.color="white";
+                newsignUpbtn.style.cursor="pointer";
+            }
+
+        }
+        newusername.addEventListener('blur',()=>{
+            let providedNewUsername=newusername.value.trim();
+            let usernameExisted=usersData.some(user=>user.username==providedNewUsername);
+            if(usernameExisted){
+                alert("Already Existed . Try New one");
+                isvalidUsername=false;
+            }
+            else if(!usernamePttrn.test(providedNewUsername)){
+                alert("Username must start with Capital letter and alteast contain 8 characters");
+                isvalidUsername=false;
+            }else{
+                isvalidUsername=true;
+            }
+            validateNewUser();
+        });
+        newpassword.addEventListener('blur',()=>{
+            let providedNewPassword=newpassword.value.trim();
+            if(providedNewPassword===""){
+                isvalidPassword=false;
+                validateNewUser();
+                return;
+            }
+            if(!passwordPttrn.test(providedNewPassword)){
+                alert("Password must start with Capital letter have one special char and alteast 2 numbers");
+                isvalidPassword=false;
+            }else{
+                isvalidPassword=true;
+            }
+            validateNewUser();
+        });
+
+        function gottoMain(){
+            let url=location.href;
+            url=url.replace('index.html','home.html');
+            setTimeout(()=>{
+                window.open(url,'_blank');
+                window.close();
+            },1000)
+        }
+
+        function signUptoHomepage(){
+            if(newusername.value!=""  && newpassword.value !=""){
+                let obj={};
+                obj.username=newusername.value.trim();
+                obj.password=newpassword.value.trim();
+                usersData.push(obj);
+                localStorage.setItem('usersdata',JSON.stringify(usersData));
+                alert("Account created successfully. Please login.");
+                backtologinbtn.click();
+            }
+        }
+        
+    </script>
+</body>
+</html>

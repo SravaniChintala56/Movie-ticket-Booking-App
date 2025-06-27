@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movies Tickets, Shows, Latest Movies</title>
+    <link rel="stylesheet" href="./home.css" />
+    <link rel="icon" href="http://lh6.ggpht.com/7DyCd4vhU-gz6iXhqk8aOiKQEo_Vt8fWRZRuU_jDYFmPosvcASchS3i_n9nDOiOAYQ=w300">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"/>
+  </head>
+  <body>
+    <!-- navbar -->
+    <header>
+      <div class="first-header" id="header">
+        <div class="first-header-part1">
+          <img src="https://www.myhoardings.com/ads/wp-content/uploads/2024/06/bookmyshow-logo-vector.png" #id="logo1" alt="" />
+          <img src="https://static.vecteezy.com/system/resources/previews/050/816/799/non_2x/bookmyshow-transparent-icon-free-png.png" alt="" id="logo2" />
+          <div class="header-subpart">
+            <input type="text" placeholder="" id="searchbar"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search searchicon" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+            </svg>
+            <button id="search-btn">Search</button>
+            <div class="suggestions-container">
+              
+            </div>
+          </div>
+        </div>
+        <div class="first-header-part2">
+          <div class="location-selection" id="selectCity" onclick="selectLocation()">
+            <span id="city-text">Select City</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down cityarrow" viewBox="0 0 16 16" style="vertical-align: center">
+              <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+            </svg>
+          </div>
+          <div class="location-opts"></div>
+          <button class="bookedtickets-btn"><a href="./bookings.html">My Bookings</a></button>
+        </div>
+      </div>
+    </header>
+    <!-- scrollingdiv -->
+    <div class="locations">
+      <h4>Select City</h4>
+      <div class="display-locations">
+        <div class="city">
+          <img
+            src="https://in.bmscdn.com/m6/images/common-modules/regions/mumbai.png"
+            alt="img1"
+          />
+          <h5>Mumbai</h5>
+        </div>
+        <div class="city">
+          <img
+            src="https://in.bmscdn.com/m6/images/common-modules/regions/bang.png"
+            alt="img3"
+          />
+          <h5>Bangalore</h5>
+        </div>
+        <div class="city">
+          <img
+            src="https://in.bmscdn.com/m6/images/common-modules/regions/hyd.png"
+            alt="img4"
+          />
+          <h5>Hyderabad</h5>
+        </div>
+        <div class="city">
+          <img
+            src="https://in.bmscdn.com/m6/images/common-modules/regions/chen.png"
+            alt="img5"
+          />
+          <h5>Chennai</h5>
+        </div>
+      </div>
+      <p class="morecities" onclick="viewCities()">View more cities</p>
+      <div class="hiddencities">
+        <span>New York</span>
+        <span>London</span>
+        <span>Tokyo</span>
+        <span>Paris</span>
+        <span>Dubai</span>
+        <span>Sydney</span>
+        <span>Toronto</span>
+        <span>Barcelona</span>
+        <span>Berlin</span>
+        <span>Singapore</span>
+        <span>Barcelona</span>
+        <span>Amsterdam</span>
+        <span>Los Angeles</span>
+        <span>San Francisco</span>
+        <span>Bangkok</span>
+        <span>Chicago</span>
+        <span>Istanbul</span>
+      </div>
+    </div>
+    <!-- Carousel -->
+    <div id="myCarousel" class="carousel slide custom-carousel" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="./carouselimage1.png" class="d-block w-100" alt="Slide 1" />
+        </div>
+        <div class="carousel-item">
+          <img src="./carouselimage.png" class="d-block w-100" alt="Slide 2" />
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#myCarousel"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#myCarousel"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <!-- Cards-Container -->
+    <main id="MoviesSection">
+      <h3 class="highlight">Trending Movies</h3>
+      <div class="cards-container">
+        <div class="filters-sec">
+          <p class="filters-heading"><b><span class="filter-icon-container"><i class="bi bi-funnel-fill filter-icon"></i></span>Filters</b><span class="clr-filters" onclick="clearFilters()">Clear</span></p>
+
+          <div class="Language-filter-container">
+            <div class="lng-text"><p id="lng"><i class="bi bi-chevron-down lng-arrow" style="margin-top:1px;"></i>Language</p></div>
+            <div class="lng-opts-container">
+              <div class="lng-opts">Telugu</div>
+              <div class="lng-opts">Hindi</div>
+              <div class="lng-opts">English</div>
+              <div class="lng-opts">Tamil</div>
+              <div class="lng-opts">Malayalam</div>
+              <div class="lng-opts">Kannada</div>
+            </div>
+          </div>
+          <div class="genre-filter-div">
+            <div class="filter-txt">
+              <p id="genre"><i class="bi bi-chevron-down genre-arrow" style="margin-top:1px;"></i>Genre</p>
+            </div>
+            <div class="genre-opts-container">
+            <div class="genres">Action</div>
+            <div class="genres">Drama</div>
+            <div class="genres">Thriller</div>
+            <div class="genres">Adventure</div>
+            <div class="genres">Sci-Fi</div>
+            <div class="genres">Crime</div>
+            <div class="genres">Horror</div>
+            <div class="genres">Mystery</div>
+            <div class="genres">Family</div>
+            <div class="genres">Historical</div>
+            <div class="genres">Comedy</div>
+            <div class="genres">War</div>
+            <div class="genres">Sports</div>
+            <div class="genres">Romantic</div>
+          </div>
+          </div>
+          <div class="Rating-container">
+            <div class="rating-txt"><p id="rating"><i class="bi bi-chevron-down rating-arrow" style="margin-top:1px;"></i>Rating</p></div>
+            <div class="rating-opts-container">
+              <div class="rating-opts" onclick="ratingGenerate('9')">>9</div>
+              <div class="rating-opts" onclick="ratingGenerate('8')">>8</div>
+              <div class="rating-opts" onclick="ratingGenerate('7')">>7</div>
+              <div class="rating-opts" onclick="ratingGenerate('6')">>6</div>
+            </div>
+          </div>
+        </div>
+        <div class="cards-sec"></div>
+      </div>
+      <div class="paginationbar">
+        <button class="prev-btn">Prev</button>
+        <div class="dynamic-btns-container"></div>
+        <button class="next-btn">Next</button>
+      </div>
+    </main>
+    <!-- endofPage -->
+    <section>
+      <div class="add-img-container"><img src="./longimage.png" alt="" class="add-img"></div>
+      <div class="trendingsearchbox">
+        <h4>Trending Searches Right Now</h4>
+        <div class="trendingSearchresults">
+          <div class="results">
+            <h4>Gulkand</h4>
+            <p>Movies</p>
+          </div>
+          <div class="results">
+            <h4>Final Destinations</h4>
+            <p>Movies</p>
+          </div>
+          <div class="results">
+            <h4>Thunderbolts</h4>
+            <p>Movies</p>
+          </div>
+          <div class="results">
+            <h4>Shubam</h4>
+            <p>Movies</p>
+          </div>
+          <div class="results">
+            <h4>#Single</h4>
+            <p>Movies</p>
+          </div>
+          <div class="results">
+            <h4>Kesari Chapter2:The Untold Story of Jallianbagh Wala</h4>
+            <p>Movies</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- footer -->
+    <footer>
+      <div class="footer">
+        <div class="footer-txt">
+          <h5 class="footer-1"><b>List Your Show</b> Got a show,Event, activity or a great experience? Partner with us & get listed on BookmyShow</h5>
+          <button>contact US</button>
+        </div>
+        <div class="accordions-sec">
+          <div class="accordion-items" style="border-top-left-radius:10px; border-top-right-radius:10px;">
+            <div class="accordion-queries"><p>Is BookMyShow trustworthy?</p><button class="acc-btn" onclick="showAnswer('ans-1','arrow-1')"><i class="bi bi-chevron-down arrow-1"></i></button></div>
+            <div class="accordion-answers" id="ans-1">BookMyShow is one of India’s most trusted ticketing platforms, serving millions of users with secure transactions. We use industry-standard encryption and payment gateways to ensure your personal and financial information remains protected. </div>
+          </div>
+          <div class="accordion-items">
+            <div class="accordion-queries"><p>What is the refund policy for cancelled shows?</p><button class="acc-btn" onclick="showAnswer('ans-2','arrow-2')"><i class="bi bi-chevron-down arrow-2"></i></button></div>
+            <div class="accordion-answers" id="ans-2">If a show is cancelled by the organiser or venue, the ticket amount will be automatically refunded to your original payment source within 5–7 business days. You will also receive a confirmation email/SMS regarding the refund.</div>
+          </div>
+          <div class="accordion-items">
+            <div class="accordion-queries"><p> Can I cancel my ticket after booking?</p><button class="acc-btn" onclick="showAnswer('ans-3','arrow-3')"><i class="bi bi-chevron-down arrow-3"></i></button></div>
+            <div class="accordion-answers" id="ans-3">Ticket cancellation is available only for select shows that are marked as “Cancellable.” You can check this before booking. Cancellation requests must be made within the allowed time frame, and a small cancellation fee may apply.</div>
+          </div>
+          <div class="accordion-items" style="border-bottom-left-radius:10px; border-bottom-right-radius:10px;">
+            <div class="accordion-queries"><p>Can I review a movie I watched?</p><button class="acc-btn" onclick="showAnswer('ans-4','arrow-4')"><i class="bi bi-chevron-down arrow-4"></i></button></div>
+            <div class="accordion-answers" id="ans-4">Absolutely! Users who book and watch movies via BookMyShow can leave verified reviews and ratings. These help other users make informed decisions. You’ll find the review option under "My Bookings."</div>
+          </div>
+        </div>
+        <div class="hrtag-container"><hr class="hrtag"><img src="	https://in.bmscdn.com/webin/common/icons/logo.svg" alt="" class="logotxt"></div>
+        <div class="copyr8stxt">
+          <p>Copyright 2025  © Bigtree Entertainment Pvt. Ltd. All Rights Reserved. </p>
+          <p>The content and images used on this site are copyright protected and copyrights vests with the respective owners. The usage of the content and images on this website is intended to promote the works and no endorsement of the artist shall be implied. Unauthorized use is prohibited and punishable by law.</p>
+        </div>
+      </div>
+      <div class="footer-btn"><button><a href="#header">Go to top</a></button></div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./home.js"></script>
+  </body>
+</html>
