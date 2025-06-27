@@ -180,8 +180,7 @@
         });
 
         function gottoMain(){
-            let url=location.href;
-            url=url.replace('Movie-ticket-Booking-App','home.html');
+            const url = "/Movie-ticket-Booking-App/home.html"
             setTimeout(()=>{
                 window.open(url,'_blank');
                 window.close();
